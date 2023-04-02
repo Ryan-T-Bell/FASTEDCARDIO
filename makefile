@@ -1,5 +1,5 @@
-P=c2-cli
-OBJECTS=c2-cli.o
+P=main
+OBJECTS=main.o
 CFLAGS=-g -Wall -O3
 LDLIBS=-lreadline
 CC=/usr/bin/c99
