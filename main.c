@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <ctype.h>
 
 #define BLACK "\033[0;30m"
 #define RED "\033[0;31m"
@@ -18,46 +20,60 @@ char* prompt_function(void) {
     return BLUE "[C2] >" RESET " ";
 }
 
-// 2) Process command input
+// 2) Normalize string (helper to convert to lowercase)
+char* normalize_string(char* input) {
+    int len = strlen(input);
+    
+    // Remove newline character, if any
+    if (len > 0 && input[len-1] == '\n') {
+        input[len-1] = '\0';
+        len--;
+    }
+    
+    // Convert string to lowercase
+    for (int i = 0; i < len; i++) {
+        input[i] = tolower(input[i]);
+    }
+    
+    return input;
+}
+
+// 3) Process command input
 int process_command_input(char *input) {
     
     // Check null input
     if (strlen(input) > 0)
         add_history(input);
 
-    // Switch
-    input[strcspn(input, "\n")] = 0;
-
-    // Use switch statement with strings
-    switch (input[0]) {
-        case 'h':
-            printf("You entered Blue\n");
-            break;
-        case 'g':
-            printf("You entered Green\n");
-            break;
-        case 'i':
-            printf("You entered Red\n");
-            break;
-        default:
-            printf("Invalid color entered\n");
-            break;
+    // Parse results
+    if (strcmp(input, "h") == 0 || strcmp(input, "hello") == 0) {
+        printf("Help\n");
+    }
+    else if (strcmp(input, "g") == 0 || strcmp(input, "generate") == 0) {
+        printf("Generate\n");
+    }
+    else if (strcmp(input, "i") == 0 || strcmp(input, "implants") == 0) {
+        printf("Implant\n");
+    }
+    else {
+        printf("Default\n");
     }
 
     return 0;
 }
 
-// 3) Run Command Line Interface Loop
+// 4) Run Command Line Interface Loop
 void run_cli(void) {
     char* input;
     
     while ((input = readline(prompt_function())) != NULL) {
+        input = normalize_string(input);
         process_command_input(input);
         free(input);
     }
 }
 
-// Main function
+// 0) Main function
 int main(void) {    
     run_cli();
     return 0;

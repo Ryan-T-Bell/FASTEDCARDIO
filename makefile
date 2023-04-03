@@ -1,6 +1,6 @@
 P=main
 OBJECTS=main.o
-CFLAGS=-g -Wall -O3
+CFLAGS=-g -O3
 LDLIBS=-lreadline
 CC=/usr/bin/c99
 
