@@ -46,7 +46,7 @@ int process_command_input(char *input) {
         add_history(input);
 
     // Parse results
-    if (strcmp(input, "h") == 0 || strcmp(input, "hello") == 0) {
+    if (strcmp(input, "h") == 0 || strcmp(input, "help") == 0) {
         printf("Help\n");
     }
     else if (strcmp(input, "g") == 0 || strcmp(input, "generate") == 0) {
