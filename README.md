@@ -1,2 +1,2 @@
-# C2-CLI
-Command Line Interface Tool to C2 RATs
+# FASTED CARDIO
+Command Line Interface application to generate and C2 a Remote Access Tools

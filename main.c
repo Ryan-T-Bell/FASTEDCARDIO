@@ -16,8 +16,15 @@
 #define RESET "\033[0m"
 
 // 1) Custom prompt function (helper to add color)
-char* prompt_function(void) {
-    return BLUE "[C2] >" RESET " ";
+char* prompt_function(int state) {
+    switch (state) {
+        case 1:
+            return GREEN "[GENERATE] >" RESET " ";
+        case 2:
+            return RED "[IMPLANT] >" RESET " ";
+        default:
+            return BLUE "[C2] >" RESET " ";
+    }
 }
 
 // 2) Normalize string (helper to convert to lowercase)
@@ -48,27 +55,30 @@ int process_command_input(char *input) {
     // Parse results
     if (strcmp(input, "h") == 0 || strcmp(input, "help") == 0) {
         printf("Help\n");
+        return 0;
     }
     else if (strcmp(input, "g") == 0 || strcmp(input, "generate") == 0) {
         printf("Generate\n");
+        return 1;
     }
     else if (strcmp(input, "i") == 0 || strcmp(input, "implants") == 0) {
         printf("Implant\n");
+        return 2;
     }
     else {
         printf("Default\n");
+        return 0;
     }
-
-    return 0;
 }
 
 // 4) Run Command Line Interface Loop
 void run_cli(void) {
     char* input;
+    int state = 0;
     
-    while ((input = readline(prompt_function())) != NULL) {
+    while ((input = readline(prompt_function(state))) != NULL) {
         input = normalize_string(input);
-        process_command_input(input);
+        state = process_command_input(input);
         free(input);
     }
 }
