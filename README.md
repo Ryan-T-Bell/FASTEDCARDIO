@@ -1,13 +1,26 @@
 # FASTED CARDIO
-Command Line Interface application to generate and C2 an implant or Remote Access Tools
+Command Line Interface application to generate and C2 an implant or remote access tools.
 
-## Command and Control (C2)
-In the CLI app, C2 is the management interface for active implants and RATs.
-This is the default state that the application starts in.  The C2 CLI 
-- help (h) - Display help information
-- implants (i) - List implants
-- 
+## Client
+In the CLI app, Client is the management interface for local actions.  This is used to start listeners, 
 - exit (e) - Exit the application
+- help (h) - Display help information
+- list (ls) - List beacon, trigger, and RATs
+- listener (l / nc) - Start listener on a port to receive beacon or rat connections
+    l <port> or nc <port>
+- settings (s) - Display and edit settings
+- use (u) - Select an implant/RAT to use
 
 ## Forge
-The server interace is used to interact with FASTEDCARDIO functions and settings.
+Forge is the implant/RAT generation interface.
+- exit (e) - Exit the application
+- help (h) - Display help information
+- forge (f) - Generate an implant/RAT
+    f <beacon/trigger/rat> <exe/library> <os> <arch> <c2-ip> <c2-port>
+
+    Examples:
+    forge beacon exe windows x86
+    forge trigger library windows x64
+    forge rat library linux x64
+
+## Command and Control (C2)
