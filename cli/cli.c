@@ -5,9 +5,8 @@
 #include <readline/history.h>
 #include <ctype.h>
 #include "colors.c"
-#include "cli_c2.c"
-#include "cli_forge.c"
-#include "cli_client.c"
+#include "forge/cli.c"
+#include "tasker/cli.c"
 
 // Custom prompt function (helper to add color)
 char* prompt_function(int state) {
