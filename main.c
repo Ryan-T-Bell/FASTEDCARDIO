@@ -1,6 +1,5 @@
-#include "cli/cli.h"
+#include "cli/cli.c"
 
-// Compile: make
 int main(void) {    
     return run_cli();
 }

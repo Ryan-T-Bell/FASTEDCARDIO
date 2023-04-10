@@ -21,7 +21,7 @@ const char* msgExit = "Are you sure you want to exit? (y/n)\n";
 const char* msgInvalid = YELLOW "[Invalid Input] " RESET "Enter \"help\" or \"h\" for input instructions. \n";
 
 // Tasker Messages
-const char* msgForgeHelp = GREEN "HELP:\n" RESET;
+const char* msgTaskerHelp = GREEN "HELP:\n" RESET;
 
 // Forge Messages
 const char* msgForgeHelp = GREEN "HELP:\n" RESET

@@ -1,4 +1,4 @@
-#include "cli_messages.h"
+#include "messages.h"
 
 int parse_forge(char *input) {
     if (strcmp(input, "?") == 0 || strcmp(input, "h") == 0 || strcmp(input, "help") == 0) {

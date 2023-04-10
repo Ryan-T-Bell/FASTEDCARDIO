@@ -4,12 +4,13 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <ctype.h>
-#include "cli.h"
-#include "cli_messages.h"
+#include "messages.h"
+#include "cli_forge.c"
+#include "cli_tasker.c"
 
 
 // Custom prompt function
-char* prompt_function(int state) {
+const char* prompt_function(int state) {
     switch (state) {
         case 0:
             return promptTasker;
@@ -46,7 +47,7 @@ int process_command_input(int state, char *input) {
 
     // Parse input
     if (state == 0)
-        return parse_c2(input);
+        return parse_tasker(input);
     else if (state == 1)
         return parse_forge(input);
     else

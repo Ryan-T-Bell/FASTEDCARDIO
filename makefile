@@ -6,3 +6,6 @@ CC=/usr/bin/c99
 
 $(P): $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) $(LDLIBS) -o $(P)
+
+clean:
+	rm -f $(P) $(OBJECTS)

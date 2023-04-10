@@ -1,7 +1,7 @@
-#include "colors.c"
+#include "messages.h"
 
 // Parse command input when state = 0 [C2]
-int parse_client(char *input) {
+int parse_tasker(char *input) {
     if (strcmp(input, "h") == 0 || strcmp(input, "help") == 0) {
         printf("Help\n");
         return 0;
