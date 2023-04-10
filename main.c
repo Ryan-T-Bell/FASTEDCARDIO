@@ -2,6 +2,5 @@
 
 // Compile: make
 int main(void) {    
-    run_cli();
-    return 0;
+    return run_cli();
 }

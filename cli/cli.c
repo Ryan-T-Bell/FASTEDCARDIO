@@ -4,10 +4,11 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <ctype.h>
-#include "cli_messages.h"
 #include "cli.h"
+#include "cli_messages.h"
 
-// Custom prompt function (helper to add color)
+
+// Custom prompt function
 char* prompt_function(int state) {
     switch (state) {
         case 0:
@@ -53,7 +54,7 @@ int process_command_input(int state, char *input) {
 }
 
 // Run command line interface loop
-void run_cli(void) {
+int run_cli(void) {
     char* input;
     int state = 0;
     
@@ -62,4 +63,6 @@ void run_cli(void) {
         state = process_command_input(state, input);
         free(input);
     }
+
+    return 0;
 }
