@@ -19,8 +19,8 @@ Forge is the implant/RAT generation interface.
     f <beacon/trigger/rat> <exe/library> <os> <arch> <c2-ip> <c2-port>
 
     Examples:
-    forge beacon exe windows x86
+    forge beacon exe windows x86 192.168.86.100 443
     forge trigger library windows x64
-    forge rat library linux x64
+    forge rat library linux x64 192.168.86.100 8080
 
 ## Command and Control (C2)
