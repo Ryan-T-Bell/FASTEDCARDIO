@@ -5,17 +5,17 @@
 #include <readline/history.h>
 #include <ctype.h>
 #include "messages.h"
-#include "cli_forge.c"
-#include "cli_tasker.c"
-
+#include "input_parser.c"
 
 // Custom prompt function
 const char* prompt_function(int state) {
     switch (state) {
         case 0:
-            return promptTasker;
+            return promptC2;
         case 1:
-            return promptForge;
+            return promptLP;
+        case 2:
+            return promptAgent;
         default:
             return promptUnknownState;
     }
@@ -25,7 +25,7 @@ const char* prompt_function(int state) {
 char* normalize_string(char* input) {
     int len = strlen(input);
     
-    // Remove newline character, if any
+    // Remove newline character
     if (len > 0 && input[len-1] == '\n') {
         input[len-1] = '\0';
         len--;
@@ -46,12 +46,16 @@ int process_command_input(int state, char *input) {
         add_history(input);
 
     // Parse input
-    if (state == 0)
-        return parse_tasker(input);
-    else if (state == 1)
-        return parse_forge(input);
-    else
-        return -1;
+    switch (state) {
+        case 0:
+            return parse_c2(input);
+        case 1:
+            return parse_lp(input);
+        case 2:
+            return parse_agent(input);
+        default:
+            return -1;
+    }
 }
 
 // Run command line interface loop

@@ -12,8 +12,9 @@
 #define MESSAGES_H
 
 // CLI Prompts
-const char* promptTasker = BLUE "[TASKER] >" RESET " ";
-const char* promptForge = GREEN "[FORGE] >" RESET " ";
+const char* promptC2 = BLUE "[C2] >" RESET " ";
+const char* promptLP = GREEN "[LP] >" RESET " ";
+const char* promptAgent = RED "[AGENT] >" RESET " ";
 const char* promptUnknownState = RED "[ERROR]" RESET " cli.c: Unknown state";
 
 // Shared Messages

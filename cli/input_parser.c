@@ -1,6 +1,6 @@
 #include "messages.h"
 
-int parse_forge(char *input) {
+int parse_c2(char *input) {
     if (strcmp(input, "?") == 0 || strcmp(input, "h") == 0 || strcmp(input, "help") == 0) {
         printf("%s", msgForgeHelp);
         return 0;
@@ -18,4 +18,13 @@ int parse_forge(char *input) {
         printf("%s", msgInvalid);
         return 0;
     }
+}
+
+
+int parse_lp(char *input) {
+    return 1;
+}
+
+int parse_agent(char *input) {
+    return 2;
 }
