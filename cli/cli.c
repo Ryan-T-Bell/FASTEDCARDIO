@@ -4,21 +4,18 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <ctype.h>
-#include "colors.c"
-#include "forge/cli.c"
-#include "tasker/cli.c"
+#include "cli_messages.h"
+#include "cli.h"
 
 // Custom prompt function (helper to add color)
 char* prompt_function(int state) {
     switch (state) {
         case 0:
-            return BLUE "[Client] >" RESET " ";
+            return promptTasker;
         case 1:
-            return GREEN "[FORGE] >" RESET " ";
-        case 2:
-            return MAGENTA "[C2] >" RESET " ";
+            return promptForge;
         default:
-            return RED "cli.c: Unknown state" RESET " ";
+            return promptUnknownState;
     }
 }
 

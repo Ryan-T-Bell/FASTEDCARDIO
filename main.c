@@ -1,4 +1,4 @@
-#include "cli/cli.c"
+#include "cli/cli.h"
 
 // Compile: make
 int main(void) {    
