@@ -14,9 +14,9 @@ This is the portion of the application to control blue-space activity.
     forge -a <beacon/trigger/rat> -f <exe/library> -os <windows/linux> -arch <arch> -ip <ip> -p <port>
 
     Examples: <br/>
-    forge beacon exe windows x86 192.168.86.100 443 <br/>
-    forge trigger library windows x64 <br/>
-    forge rat library linux x64 192.168.86.100 8080 <br/>
+    forge -a beacon  -f exe     -os windows -arch x86 -ip 192.168.86.100 -p 443 <br/>
+    forge -a trigger -f library -os windows -arch x64 <br/>
+    forge -a rat     -f library -os linux   -arch x64 -ip 192.168.86.100 -p 8080 <br/>
 
 - help (h) - Display help information.
 - list (ls) - List LPs and agents for active connections of all active beacons, trigger, and RATs.
@@ -25,6 +25,7 @@ This is the portion of the application to control blue-space activity.
 
 ### 2 - LP: Listening Post
 Listening posts are the servers that receive tasker commands and forwards them to the agents.  They are paired with agents to allow for communication between the two.
+<br/><br/>
 This is kept confidential via an underlying public/private key pair.
 
 ##### Commands
