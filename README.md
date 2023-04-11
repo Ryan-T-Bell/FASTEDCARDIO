@@ -14,9 +14,9 @@ This is the portion of the application to control blue-space activity.
     forge -a <beacon/trigger/rat> -f <exe/library> -os <windows/linux> -arch <arch> -ip <ip> -p <port>
 
     Examples:
-    forge beacon exe windows x86 192.168.86.100 443
-    forge trigger library windows x64
-    forge rat library linux x64 192.168.86.100 8080
+    forge beacon exe windows x86 192.168.86.100 443 \n
+    forge trigger library windows x64 \n 
+    forge rat library linux x64 192.168.86.100 8080 \n
 
 - help (h) - Display help information.
 - list (ls) - List LPs and agents for active connections of all active beacons, trigger, and RATs.
