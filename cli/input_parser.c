@@ -96,7 +96,7 @@ char* getNextWord(int index, char* input) {
     return str;
 }
 
-// Parse forge command line and return normalized string for compiler
+// Parse forge command line and return normalized string for compile command
 char* parseForgeInput(char* input) {
     int i = 5;
     char *flag, *arg, *a, *f, *os, *arch, *ip, *port;
@@ -129,11 +129,9 @@ char* parseForgeInput(char* input) {
             printf("Invalid flag: %s\n", flag);
     }
 
-    printf("forge %s %s %s %s %s %s\n", a, f, os, arch, ip, port);
+    printf("forge -a %s -f %s -os %s -arch %s -ip %s -p %s\n", a, f, os, arch, ip, port);
     return "forged";
 }
-
-
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
