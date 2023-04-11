@@ -97,9 +97,10 @@ char* getNextWord(int index, char* input) {
 }
 
 // Parse forge command line and return normalized string for compile command
-char* parseForgeInput(char* input) {
+char** parseForgeInput(char* input) {
     int i = 5;
-    char *flag, *arg, *a, *f, *os, *arch, *ip, *port;
+    char *flag, *arg;
+    char** arguments = (char**)malloc(6 * sizeof(char*));
 
     while (i < strlen(input) && input[i]) {
         // Get next flag
@@ -112,25 +113,28 @@ char* parseForgeInput(char* input) {
 
         // Store argument
         if (strcmp(flag, "-a") == 0)
-            a = arg;
+            arguments[0] = arg;
         else if (strcmp(flag, "-f") == 0)
-            f = arg;
+            arguments[1] = arg;
         else if (strcmp(flag, "-os") == 0)
-            os = arg;
+            arguments[2] = arg;
         else if (strcmp(flag, "-arch") == 0)
-            arch = arg;
+            arguments[3] = arg;
         else if (strcmp(flag, "-ip") == 0)
-            ip = arg;
+            arguments[4] = arg;
         else if (strcmp(flag, "-p") == 0 || strcmp(flag, "-port") == 0)
-            port = arg;
+            arguments[5] = arg;
         else if (strcmp(flag, "") == 0)
             continue;
         else
             printf("Invalid flag: %s\n", flag);
     }
 
-    printf("forge -a %s -f %s -os %s -arch %s -ip %s -p %s\n", a, f, os, arch, ip, port);
-    return "forged";
+    free(flag);
+    free(arg);
+
+    printf("forge -a %s -f %s -os %s -arch %s -ip %s -p %s\n", arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
+    return arguments;
 }
 
 
