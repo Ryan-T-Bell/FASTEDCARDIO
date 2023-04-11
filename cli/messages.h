@@ -19,17 +19,21 @@ const char* promptUnknownState = RED "[ERROR]" RESET " cli.c: Unknown state";
 
 // Shared Messages
 const char* msgExit = "Are you sure you want to exit? (y/n)\n";
-const char* msgInvalid = YELLOW "[Invalid Input] " RESET "Enter \"help\" or \"h\" for input instructions. \n";
+const char* msgInvalid = YELLOW "Invalid Input " RESET "Enter \"help\" or \"h\" for input instructions. \n";
 
-// Tasker Messages
-const char* msgTaskerHelp = GREEN "HELP:\n" RESET;
-
-// Forge Messages
+// C2 Messages
 const char* msgForgeHelp = GREEN "HELP:\n" RESET
                       "Available commands:\n"
                       "?/h help (this menu): Display this menu\n"
                       "e exit: Exit the program\n"
                       "f forge: Forge an agent (a) or listening post (lp).\n"
                       ;
+
+
+// LP Messages
+
+
+// Agent Messages
+
 
 #endif // MESSAGES_H
