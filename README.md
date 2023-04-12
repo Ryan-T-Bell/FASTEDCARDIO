@@ -1,5 +1,16 @@
-# FASTED CARDIO
+# FASTEDCARDIO
 Command Line Interface application to generate and C2 an implant or remote access tools.
+
+### Installation
+FASTEDCARDIO is meant to operate as a standalone tool.  When you run the C2 binary from blue space, it will create a directory in your root directory. <br/>
+
+##### Footprint: <br/>
+Blue Space: <br/>
+Grey Space: <br/>
+Red Space: <br/>
+
+### Dependencies
+- gcc: Used to compile the C2 and LP binaries.
 
 ### 1 - C2: Command and Control
 This is the portion of the application to control blue-space activity.

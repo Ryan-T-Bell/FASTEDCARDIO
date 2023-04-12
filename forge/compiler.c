@@ -1,3 +1,9 @@
-int compile(char *os, char *arch, char *ip, char *port) {
+int argumentsValid(char ** arguments) {
+    
+    
+    return 1;
+}
+
+int compile(char ** arguments) {
 
 }

