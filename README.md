@@ -9,9 +9,6 @@ Blue Space: <br/>
 Grey Space: <br/>
 Red Space: <br/>
 
-### Dependencies
-- gcc: Used to compile the C2 and LP binaries.
-
 ### 1 - C2: Command and Control
 This is the portion of the application to control blue-space activity.
 1) Generate agents and LPs

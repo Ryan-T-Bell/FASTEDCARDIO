@@ -103,6 +103,7 @@ char* getNextWord(int index, char* input) {
 
 // Parse forge command line and return normalized string for compile command
 char** parseForgeInput(char* input) {
+    int invalidFlag = 0;
     int i = 5;
     char *flag, *arg;
     // char** arguments = (char**)malloc(6 * sizeof(char*));
@@ -134,8 +135,11 @@ char** parseForgeInput(char* input) {
         else if (strcmp(flag, "") == 0)
             continue;
         else
-            printf("Invalid flag: %s\n", flag);
+            invalidFlag = 1;
     }
+
+    if (invalidFlag)
+        printf(msgInvalidFlag);
 
     return arguments;
 }
