@@ -53,6 +53,8 @@ int isUse(char* input) {
 
 // Check if input string is forge command
 int isForge(char* input) {
+    if (strlen(input) < 5)
+        return 0;
     return input[0] == 'f' && input[1] == 'o' && input[2] == 'r' && input[3] == 'g' && input[4] == 'e';
 }
 
@@ -69,7 +71,6 @@ int getNextIndexOf(int startIndex, char c, char* input) {
 
 // Return char* of next word in input string separated by ' ', '\0', or '\n'
 char* getNextWord(int index, char* input) {
-
     int i = index;
     int len = strlen(input);
     char c;
@@ -104,9 +105,11 @@ char* getNextWord(int index, char* input) {
 char** parseForgeInput(char* input) {
     int i = 5;
     char *flag, *arg;
-    char** arguments = (char**)malloc(6 * sizeof(char*));
+    // char** arguments = (char**)malloc(6 * sizeof(char*));
+    char** arguments = (char**)calloc(6, sizeof(char*));
+    
+    while (i < strlen(input) && input[i] != '\0' && input[i] != '\n') {
 
-    while (i < strlen(input) && input[i]) {
         // Get next flag
         i = getNextIndexOf(i, '-', input);
         flag = getNextWord(i, input);
@@ -133,9 +136,6 @@ char** parseForgeInput(char* input) {
         else
             printf("Invalid flag: %s\n", flag);
     }
-
-    free(flag);
-    free(arg);
 
     return arguments;
 }

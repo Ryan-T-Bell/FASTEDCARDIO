@@ -1,6 +1,7 @@
 P=main
-OBJECTS=main.o
-CFLAGS=-g -O3
+SRC_DIR=src
+OBJECTS=$(SRC_DIR)/main.o
+CFLAGS=-g -O3 -I src
 LDLIBS=-lreadline
 CC=/usr/bin/c99
 
