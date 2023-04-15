@@ -8,7 +8,7 @@
 #include "input_parser.c"
 
 // Custom prompt function
-const char* prompt_function(int state) {
+const char* promptFunction(int state) {
     switch (state) {
         case 0:
             return promptC2;
@@ -22,7 +22,7 @@ const char* prompt_function(int state) {
 }
 
 // Normalize string (helper to convert to lowercase)
-char* normalize_string(char* input) {
+char* normalizeString(char* input) {
     int len = strlen(input);
     
     // Remove newline character
@@ -39,7 +39,7 @@ char* normalize_string(char* input) {
 }
 
 // Process command input
-int process_command_input(int state, char *input) {
+int processCommandInput(int state, char *input) {
     
     // Check null input
     if (strlen(input) > 0)
@@ -48,24 +48,24 @@ int process_command_input(int state, char *input) {
     // Parse input
     switch (state) {
         case 0:
-            return parse_c2(input);
+            return parseC2(input);
         case 1:
-            return parse_lp(input);
+            return parseLP(input);
         case 2:
-            return parse_agent(input);
+            return parseAgent(input);
         default:
             return -1;
     }
 }
 
 // Run command line interface loop
-int run_cli(void) {
+int runCli(void) {
     char* input;
     int state = 0;
     
-    while (state >= 0 && (input = readline(prompt_function(state))) != NULL) {
-        input = normalize_string(input);
-        state = process_command_input(state, input);
+    while (state >= 0 && (input = readline(promptFunction(state))) != NULL) {
+        input = normalizeString(input);
+        state = processCommandInput(state, input);
         free(input);
     }
 
