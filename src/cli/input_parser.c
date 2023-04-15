@@ -1,4 +1,4 @@
-#include "messages.h"
+#include "colors.h"
 #include "forge/forge.h"
 #include <string.h>
 
@@ -19,7 +19,7 @@ int is_exit(char* input) {
 
 int confirm_exit(void) {
     char* exitInput;
-    exitInput = readline(msgExit);
+    exitInput = readline("Are you sure you want to exit? (y/n)\n");
     
     if (strcmp(exitInput, "y") == 0 || strcmp(exitInput, "yes") == 0)
         return -1;
@@ -85,7 +85,7 @@ int parse_C2(char *input) {
         printf("Use\n");                       // TODO Implement
     
     else
-        printf("%s", msgInvalid);
+        printf("%s", YELLOW "Invalid Input " RESET "Enter \"help\" or \"h\" for input instructions. \n");
     return 0;
 }
 

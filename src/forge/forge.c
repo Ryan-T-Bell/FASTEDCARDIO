@@ -73,7 +73,6 @@ void compile(struct Forge* obj) {
     printf("Compile!\n");
 }
 
-// Directory main function
 void forge_agent(char* input) {
     if (validate_input_length(input)) {
         struct Forge* obj = init();
