@@ -16,10 +16,6 @@ const char* i686_w64_mingw32 = "i686-w64-mingw32";                 // 32-bit Win
 const char* avr = "avr";                                           // Atmel AVR microcontrollers
 
 
-char* getRandomName() {
-    
-}
-
 int compile(char ** arguments) {
     char * agent = arguments[0];
     char * format = arguments[1];
