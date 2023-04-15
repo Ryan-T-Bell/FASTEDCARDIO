@@ -8,21 +8,21 @@
 #include "input_parser.c"
 
 // Custom prompt function
-const char* promptFunction(int state) {
+const char* prompt_function(int state) {
     switch (state) {
         case 0:
-            return promptC2;
+            return BLUE "[C2] >" RESET " ";
         case 1:
-            return promptLP;
+            return GREEN "[LP] >" RESET " ";
         case 2:
-            return promptAgent;
+            return RED "[AGENT] >" RESET " ";
         default:
-            return promptUnknownState;
+            return RED "[ERROR]" RESET " cli.c: Unknown state";
     }
 }
 
 // Normalize string (helper to convert to lowercase)
-char* normalizeString(char* input) {
+char* normalize_string(char* input) {
     int len = strlen(input);
     
     // Remove newline character
@@ -39,7 +39,7 @@ char* normalizeString(char* input) {
 }
 
 // Process command input
-int processCommandInput(int state, char *input) {
+int process_command_input(int state, char *input) {
     
     // Check null input
     if (strlen(input) > 0)
@@ -48,24 +48,24 @@ int processCommandInput(int state, char *input) {
     // Parse input
     switch (state) {
         case 0:
-            return parseC2(input);
+            return parse_C2(input);
         case 1:
-            return parseLP(input);
+            return parse_lp(input);
         case 2:
-            return parseAgent(input);
+            return parse_agent(input);
         default:
             return -1;
     }
 }
 
 // Run command line interface loop
-int runCli(void) {
+int run_cli(void) {
     char* input;
     int state = 0;
     
-    while (state >= 0 && (input = readline(promptFunction(state))) != NULL) {
-        input = normalizeString(input);
-        state = processCommandInput(state, input);
+    while (state >= 0 && (input = readline(prompt_function(state))) != NULL) {
+        input = normalize_string(input);
+        state = process_command_input(state, input);
         free(input);
     }
 

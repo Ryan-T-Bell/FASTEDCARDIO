@@ -1,5 +1,5 @@
 #include "cli/cli.c"
 
 int main(void) {    
-    return runCli();
+    return run_cli();
 }
