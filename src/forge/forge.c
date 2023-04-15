@@ -28,6 +28,20 @@ int validate_input_length(char* input) {
     }
 }
 
+void set_argument(struct Forge* obj, char* flag, char* arg) {
+    if (strcmp(flag, "-a") == 0)
+        obj->agent = arg;
+    else if (strcmp(flag, "-f") == 0)
+        obj->format = arg;
+    else if (strcmp(flag, "-target") == 0)
+        obj->target = arg;
+    else if (strcmp(flag, "-ip") == 0)
+        obj->ip = arg;
+    else if (strcmp(flag, "-p") == 0 || strcmp(flag, "-port") == 0)
+        obj->port = arg;
+    
+}
+
 void parse_arguments(struct Forge* obj, char* input) {
     int i = 5;
     char *flag, *arg;
@@ -49,20 +63,6 @@ void parse_arguments(struct Forge* obj, char* input) {
         free(flag);
         free(arg);
     }
-}
-
-void set_argument(struct Forge* obj, char* flag, char* arg) {
-    if (strcmp(flag, "-a") == 0)
-        obj->agent = arg;
-    else if (strcmp(flag, "-f") == 0)
-        obj->format = arg;
-    else if (strcmp(flag, "-target") == 0)
-        obj->target = arg;
-    else if (strcmp(flag, "-ip") == 0)
-        obj->ip = arg;
-    else if (strcmp(flag, "-p") == 0 || strcmp(flag, "-port") == 0)
-        obj->port = arg;
-    
 }
 
 int validate_arguments(struct Forge* obj) {
