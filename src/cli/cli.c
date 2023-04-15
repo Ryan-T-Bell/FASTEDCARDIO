@@ -4,6 +4,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <ctype.h>
+#include "cli.h"
 #include "messages.h"
 #include "input_parser.c"
 

@@ -14,7 +14,7 @@ void forge_agent(char* input);
 
 // helpers 
 struct Forge* init();
-int validate_input(char* input);
+int validate_input_length(char* input);
 void parse_arguments(struct Forge* obj, char* input);
 void set_argument(struct Forge* obj, char* flag, char* arg);
 int validate_arguments(struct Forge* obj);

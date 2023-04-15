@@ -19,21 +19,8 @@ struct Forge* init() {
     return obj;
 }
 
-void forge_agent(char* input) {
-    if (validate_input(input)) {
-        struct Forge* obj = init();
-        
-        parse_arguments(&obj, input);
-
-        if (validate_arguments(&obj))
-            compile(&obj);
-        
-        free(obj);
-    }
-}
-
-int validate_input(char* input) {
-    if (strlen(input) < 5) {
+int validate_input_length(char* input) {
+    if (strlen(input) < 8) {
         printf("Invalid input length.\n");
         return 0;
     } else {
@@ -83,7 +70,19 @@ int validate_arguments(struct Forge* obj) {
 }
 
 void compile(struct Forge* obj) {
-
+    printf("Compile!\n");
 }
 
+// Directory main function
+void forge_agent(char* input) {
+    if (validate_input_length(input)) {
+        struct Forge* obj = init();
+        
+        parse_arguments(obj, input);
 
+        if (validate_arguments(obj))
+            compile(obj);
+        
+        free(obj);
+    }
+}

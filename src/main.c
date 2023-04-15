@@ -1,4 +1,4 @@
-#include "cli/cli.c"
+#include "cli/cli.h"
 
 int main(void) {    
     return run_cli();
