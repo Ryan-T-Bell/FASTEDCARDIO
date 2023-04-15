@@ -5,7 +5,7 @@
 #include <readline/history.h>
 #include <ctype.h>
 #include "cli.h"
-#include "messages.h"
+#include "colors.h"
 #include "input_parser.c"
 
 // Custom prompt function

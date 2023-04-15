@@ -65,8 +65,52 @@ void parse_arguments(struct Forge* obj, char* input) {
     }
 }
 
+int is_agent(char* agent) {
+    if(strcmp(agent, "beacon") == 0 || strcmp(agent, "trigger") == 0 || strcmp(agent, "rat") == 0)  {
+        return 1;
+    } else {
+        printf("Invalid Flag | Agent (-a): %s\n  Acceptable values: beacon, trigger, or rat", agent);
+        return 0;
+    }
+}
+
+int is_format(char* format) {
+    if(strcmp(format, "exe") == 0 || strcmp(format, "library") == 0)  {
+        return 1;
+    } else {
+        printf("Invalid Flag | Format (-f): %s\n  Acceptable values: exe or library", format);
+        return 0;
+    }
+}
+
+int is_target(char* target) {
+    if(strcmp(target, "windows") == 0 || strcmp(target, "linux") == 0)  {
+        return 1;
+    } else {
+        printf("Invalid Flag | Target (-t): %s\n  Acceptable values: windows or linux", target);
+        return 0;
+    }
+}
+
+int is_ip(char* format, char* ip) {
+    
+    // Agent is trigger, no return IP needed
+    if (strcmp(format, "trigger") == 0) {
+        return 1;
+    } else {
+        char *token = strtok(ip, ".");
+    
+        while (token != NULL) {
+            printf("Token: %s\n", token);
+            token = strtok(NULL, ".");
+    }
+    }
+}
+
 int validate_arguments(struct Forge* obj) {
-    return 0;
+    
+    
+    return 1;
 }
 
 void compile(struct Forge* obj) {
