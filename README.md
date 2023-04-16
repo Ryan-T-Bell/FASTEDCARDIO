@@ -22,8 +22,8 @@ This is the portion of the application to control blue-space activity.
     forge -a <beacon/trigger/rat> -f <exe/library> -os <windows/linux> -arch <arch> -ip <ip> -p <port>
 
     Examples: <br/>
-    forge -a beacon -f exe -t windows -ip 192.168.86.100 -p 443 <br/>
-    forge -a trigger -f library -t x86_64-w64-mingw32 <br/>
+    forge -agent beacon -format exe -target x86_64-w64-mingw32 -ip 192.168.86.80 -port 443 <br/>
+    forge -a trigger -f library -t windows <br/>
     forge -a rat -f library -t linux -ip 192.168.86.100 -p 8080 <br/>
 
 - help (h) - Display help information.

@@ -2,11 +2,11 @@
 #define FORGE_H
 
 struct Forge {
-    const char* agent;
-    const char* format;
-    const char* target;
-    const char* ip;
-    const char* port;
+    char* agent;
+    char* format;
+    char* target;
+    char* ip;
+    int port;
 };
 
 void forge_agent(char* input);
