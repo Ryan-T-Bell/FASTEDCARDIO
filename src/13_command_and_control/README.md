@@ -1,9 +1,9 @@
 # 13. Command and Control
 This is the portion of the program to control blu/gray-space activity.
-1) Forge: Generate agents and LPs
-2) C2: Manage active agents and LPs
+- 1) Forge: Generate agents and LPs
+- 2) Agent C2: Manage active agents and LPs
 
-## Forge Commands
+## 1) Forge Commands
 - exit (e) - Exit the application.
 - forge - Generate an agent and corresponding listening post.
     forge -a <beacon/trigger/rat> -f <exe/library> -os <windows/linux> -arch <arch> -ip <ip> -p <port>
@@ -18,7 +18,7 @@ This is the portion of the program to control blu/gray-space activity.
 - remove (rm) - remove reference to agent or lp.
 - use (u) - Select which connected agent (beacon/trigger/RAT) to use.
 
-### 2 - LP: Listening Post
+## 2) LP: Listening Post
 Listening posts are the servers that receive tasker commands and forwards them to the agents.  They are paired with agents to allow for communication between the two.
 <br/><br/>
 This is kept confidential via an underlying public/private key pair.
