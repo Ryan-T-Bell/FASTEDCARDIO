@@ -1,6 +1,6 @@
 P=main
 SRC_DIR=src
-OBJECTS=$(SRC_DIR)/main.o $(SRC_DIR)/cli/cli.o  $(SRC_DIR)/forge/forge.o
+OBJECTS=$(SRC_DIR)/main.o $(SRC_DIR)/00_cli/cli.o $(SRC_DIR)/13_command_and_control/c2.o
 CFLAGS=-g -O3 -I src -D_POSIX_C_SOURCE=201712L
 LDLIBS=-lreadline
 CC=/usr/bin/c99

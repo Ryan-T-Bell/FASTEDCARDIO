@@ -1,49 +1,28 @@
 # FASTEDCARDIO
 Command Line Interface application to generate and C2 an implant or remote access tools.
 
-### Installation
-FASTEDCARDIO is meant to operate as a standalone tool.  When you run the C2 binary from blue space, it will create a directory in your root directory. <br/>
+## Description
+FASTEDCARDIO is an all in one solution for conducting MITRE-Attack categorized tasks.  It is a command line interface application that allows the user to scan, conduct penetration/vulnerability testing, generate and C2 agents (beacon, trigger, RAT), and many more activities. </br></br> 
 
-##### Footprint: <br/>
-Blue Space: <br/>
-Grey Space: <br/>
-Red Space: <br/>
+FACO is not meant to be used for malicious purposes.  It is meant to be used for educational purposes only.
 
-### 1 - C2: Command and Control
-This is the portion of the application to control blue-space activity.
-1) Generate agents and LPs
-2) List agents and LPs
-3) Remove references to agents and LPs (not the actual agents or LPs)
-4) Select which agent to use
+## Installation
+FASTEDCARDIO is meant to operate as a standalone tool.  When you run the binary on your system, it will create a directory .fastedcardio in your home dir (~/ on linux). <br/>
 
-##### Commands
-- exit (e) - Exit the application.
-- forge - Generate an agent and corresponding listening post.
-    forge -a <beacon/trigger/rat> -f <exe/library> -os <windows/linux> -arch <arch> -ip <ip> -p <port>
+## MITRE ATT&CK Coverage
+### 1. Reconnaissance
+### 2. Resource Development
+### 3. Initial Access
+### 4. Execution
+### 5. Persistence
+### 6. Privilege Escalation
+### 7. Defense Evasion
+### 8. Credential Access
+### 9. Discovery
+### 10. Lateral Movement
+### 11. Collection
+### 12. Exfiltration
+### 13. Command and Control
+- Forge: Generate an agent and corresponding listening post.
+### 14. Impact
 
-    Examples: <br/>
-    forge -agent beacon -format exe -target x86_64-w64-mingw32 -ip 192.168.86.80 -port 443 <br/>
-    forge -a trigger -f library -t windows <br/>
-    forge -a rat -f library -t linux -ip 192.168.86.100 -p 8080 <br/>
-
-- help (h) - Display help information.
-- list (ls) - List LPs and agents for active connections of all active beacons, trigger, and RATs.
-- remove (rm) - remove reference to agent or lp.
-- use (u) - Select which connected agent (beacon/trigger/RAT) to use.
-
-### 2 - LP: Listening Post
-Listening posts are the servers that receive tasker commands and forwards them to the agents.  They are paired with agents to allow for communication between the two.
-<br/><br/>
-This is kept confidential via an underlying public/private key pair.
-
-##### Commands
-- exit (e) - Exit the application back to the C2 interface
-- help (h) - Display help information.
-
-
-### 3 - Agents: Beacons, Triggers, and RATs
-
-
-##### Commands
-- exit (e) - Exit the application back to the C2 interface
-- help (h) - Display help information.
