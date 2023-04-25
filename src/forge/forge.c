@@ -154,36 +154,34 @@ int is_target(const char* target) {
 }
 
 int is_ip(const char* agent, const char* ip) {
-    
-    // Agent is trigger, no return IP needed
-    if (strcmp(agent, "trigger") == 0) {
-        return 1;
-    
-    } else if (ip == NULL) {
-        printf(WARN "Invalid Flag | IP Address (-ip): %s\n  Acceptable value format: " BLUE "127.0.0.1 or 192.168.20.20\n" RESET, ip);
-        return 0;
-    
-    // Agent is beacon or rat, check if IP
-    } else {
-        struct sockaddr_in sa4;
-        struct sockaddr_in6 sa6;
+    // Null check
+    if (ip != NULL) {
 
-        // Try to parse as IPv4 address
-        if (inet_pton(AF_INET, ip, &(sa4.sin_addr)) == 1)
+        // Agent is trigger, no return IP needed
+        if (agent != NULL && strcmp(agent, "trigger") == 0) {
             return 1;
+    
+        // Agent is beacon or rat, check if IP
+        } else {
+            struct sockaddr_in sa4;
+            struct sockaddr_in6 sa6;
 
-        // Try to parse as IPv6 address
-        if (inet_pton(AF_INET6, ip, &(sa6.sin6_addr)) == 1)
-            return 1;
+            // Try to parse as IPv4 address
+            if (inet_pton(AF_INET, ip, &(sa4.sin_addr)) == 1)
+                return 1;
 
-        printf(WARN "Invalid Flag | IP Address (-ip): %s\n  Acceptable value format: " BLUE "127.0.0.1 or 192.168.20.20\n" RESET, ip);
-        return 0;
+            // Try to parse as IPv6 address
+            if (inet_pton(AF_INET6, ip, &(sa6.sin6_addr)) == 1)
+                return 1;
+        }
     }
+    printf(WARN "Invalid Flag | IP Address (-ip): %s\n  Acceptable value format: " BLUE "127.0.0.1 or 192.168.20.20\n" RESET, ip);
+    return 0;
 }
 
 int is_port(const char* agent, const int port) {
 
-    if (strcmp(agent, "trigger") == 0 || (port >= 1 && port <= 65535))
+    if (agent != NULL && strcmp(agent, "trigger") == 0 || (port >= 1 && port <= 65535))
         return 1;
 
     printf(WARN "Invalid Flag | Port (-p): %d\n  Acceptable values: " BLUE "1-65535\n" RESET, port);
