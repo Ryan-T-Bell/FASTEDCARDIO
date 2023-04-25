@@ -7,3 +7,7 @@
 #define CYAN "\033[0;36m"
 #define WHITE "\033[0;37m"
 #define RESET "\033[0m"
+#define WARN YELLOW " [!] " RESET
+#define INFO BLUE " [*] " RESET
+#define SUCCESS GREEN " [+] " RESET
+#define ERROR RED " [!] " RESET

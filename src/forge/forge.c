@@ -3,6 +3,7 @@
 #include <string.h>
 #include <arpa/inet.h>
 #include "forge.h"
+#include "cli/colors.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Struct Functions
@@ -132,7 +133,7 @@ int is_agent(const char* agent) {
     if (agent != NULL && (strcmp(agent, "beacon") == 0 || strcmp(agent, "trigger") == 0 || strcmp(agent, "rat") == 0))  {
         return 1;
     }
-    printf("Invalid Flag | Agent (-a): %s\n  Acceptable values: beacon, trigger, or rat\n", agent);
+    printf(WARN "Invalid Flag | Agent (-a): %s\n  Acceptable values: " BLUE "beacon, trigger, or rat\n" RESET, agent);
     return 0;
 }
 
@@ -140,7 +141,7 @@ int is_format(const char* format) {
     if (format != NULL && (strcmp(format, "exe") == 0 || strcmp(format, "library") == 0))  {
         return 1;
     }
-    printf("Invalid Flag | Format (-f): %s\n  Acceptable values: exe or library\n", format);
+    printf(WARN "Invalid Flag | Format (-f): %s\n  Acceptable values: " BLUE "exe or library\n" RESET, format);
     return 0;
 }
 
@@ -148,7 +149,7 @@ int is_target(const char* target) {
     if (target != NULL && (strcmp(target, "x86_64-w64-mingw32") == 0 || strcmp(target, "i686-w64-mingw32") == 0 || strcmp(target, "x86_64-pc-linux-gnu") == 0 || strcmp(target, "i686-pc-linux-gnu") == 0 || strcmp(target, "aarch64-linux-gnu") == 0 || strcmp(target, "arm-linux-gnueabi") == 0 || strcmp(target, "arm-linux-gnueabihf") == 0))  {
         return 1;
     }
-    printf("Invalid Flag | Target (-t): %s\n  Acceptable values: windows or linux\n", target);
+    printf(WARN "Invalid Flag | Target (-t): %s\n  Acceptable values: " BLUE "windows or linux\n" RESET, target);
     return 0;
 }
 
@@ -159,7 +160,7 @@ int is_ip(const char* agent, const char* ip) {
         return 1;
     
     } else if (ip == NULL) {
-        printf("Invalid Flag | IP Address (-ip): %s\n  Acceptable value format: 127.0.0.1\n", ip);
+        printf(WARN "Invalid Flag | IP Address (-ip): %s\n  Acceptable value format: " BLUE "127.0.0.1 or 192.168.20.20\n" RESET, ip);
         return 0;
     
     // Agent is beacon or rat, check if IP
@@ -175,7 +176,7 @@ int is_ip(const char* agent, const char* ip) {
         if (inet_pton(AF_INET6, ip, &(sa6.sin6_addr)) == 1)
             return 1;
 
-        printf("Invalid Flag | IP Address (-ip): %s\n  Acceptable value format: 127.0.0.1\n", ip);
+        printf(WARN "Invalid Flag | IP Address (-ip): %s\n  Acceptable value format: " BLUE "127.0.0.1 or 192.168.20.20\n" RESET, ip);
         return 0;
     }
 }
@@ -185,16 +186,18 @@ int is_port(const char* agent, const int port) {
     if (strcmp(agent, "trigger") == 0 || (port >= 1 && port <= 65535))
         return 1;
 
-    printf("Invalid Flag | Port (-p): %d\n  Acceptable values: 1-65535\n", port);
+    printf(WARN "Invalid Flag | Port (-p): %d\n  Acceptable values: " BLUE "1-65535\n" RESET, port);
     return 0;
 }
 
 int validate_arguments(struct Forge* obj) {
-    return is_agent(get_agent(obj)) && 
-            is_format(get_format(obj)) && 
-            is_target(get_target(obj)) && 
-            is_ip(get_agent(obj), get_ip(obj)) && 
-            is_port(get_agent(obj), get_port(obj));
+    int agent = is_agent(get_agent(obj));
+    int format = is_format(get_format(obj));
+    int target = is_target(get_target(obj));
+    int ip = is_ip(get_agent(obj), get_ip(obj));
+    int port = is_port(get_agent(obj), get_port(obj));
+
+    return agent && format && target && ip && port;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -246,6 +249,7 @@ const char* arm_linux_gnueabihf = "arm-linux-gnueabihf";           // ARM Linux 
 
 
 void compile(struct Forge* obj) {
+    printf(SUCCESS "Valid arguments\n" RESET);
     // char * command = malloc(1000);
     // sprintf(command, "gcc -march= %s, -o %s %s.c -lssl -lcrypto\n", target, agent, agent);
     // system(command);
@@ -273,7 +277,6 @@ void forge_agent(char* input) {
         init(&obj);
         
         parse_arguments(&obj, input);
-        print_forge(&obj);
 
         if (validate_arguments(&obj))
             compile(&obj);
