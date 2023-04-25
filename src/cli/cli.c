@@ -12,11 +12,9 @@
 const char* prompt_function(int state) {
     switch (state) {
         case 0:
-            return BLUE "[C2] >" RESET " ";
+            return BLUE "[Forge] >" RESET " ";
         case 1:
-            return GREEN "[LP] >" RESET " ";
-        case 2:
-            return RED "[AGENT] >" RESET " ";
+            return BLUE " >" RESET " ";
         default:
             return RED "[ERROR]" RESET " cli.c: Unknown state";
     }
