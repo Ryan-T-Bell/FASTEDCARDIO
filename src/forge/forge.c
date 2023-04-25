@@ -74,10 +74,10 @@ void set_target(struct Forge* obj, const char* target) {
         free(obj->target);
     
     if (strcmp(target, "windows") == 0)
-        set_target(obj, "x86_64-w64-mingw32");
+        obj->target = strdup("x86_64-w64-mingw32");
         
     else if (strcmp(target, "linux") == 0)
-        set_target(obj, "x86_64-pc-linux-gnu");
+        obj->target = strdup("x86_64-pc-linux-gnu");
     else
         obj->target = strdup(target);
 }
@@ -129,30 +129,27 @@ int validate_input_length(char* input) {
 }
 
 int is_agent(const char* agent) {
-    if(strcmp(agent, "beacon") == 0 || strcmp(agent, "trigger") == 0 || strcmp(agent, "rat") == 0)  {
+    if (agent != NULL && (strcmp(agent, "beacon") == 0 || strcmp(agent, "trigger") == 0 || strcmp(agent, "rat") == 0))  {
         return 1;
-    } else {
-        printf("Invalid Flag | Agent (-a): %s\n  Acceptable values: beacon, trigger, or rat\n", agent);
-        return 0;
     }
+    printf("Invalid Flag | Agent (-a): %s\n  Acceptable values: beacon, trigger, or rat\n", agent);
+    return 0;
 }
 
 int is_format(const char* format) {
-    if(strcmp(format, "exe") == 0 || strcmp(format, "library") == 0)  {
+    if (format != NULL && (strcmp(format, "exe") == 0 || strcmp(format, "library") == 0))  {
         return 1;
-    } else {
-        printf("Invalid Flag | Format (-f): %s\n  Acceptable values: exe or library\n", format);
-        return 0;
     }
+    printf("Invalid Flag | Format (-f): %s\n  Acceptable values: exe or library\n", format);
+    return 0;
 }
 
 int is_target(const char* target) {
-    if(strcmp(target, "x86_64-w64-mingw32") == 0 || strcmp(target, "i686-w64-mingw32") == 0 || strcmp(target, "x86_64-pc-linux-gnu") == 0 || strcmp(target, "i686-pc-linux-gnu") == 0 || strcmp(target, "aarch64-linux-gnu") == 0 || strcmp(target, "arm-linux-gnueabi") == 0 || strcmp(target, "arm-linux-gnueabihf") == 0)  {
+    if (target != NULL && (strcmp(target, "x86_64-w64-mingw32") == 0 || strcmp(target, "i686-w64-mingw32") == 0 || strcmp(target, "x86_64-pc-linux-gnu") == 0 || strcmp(target, "i686-pc-linux-gnu") == 0 || strcmp(target, "aarch64-linux-gnu") == 0 || strcmp(target, "arm-linux-gnueabi") == 0 || strcmp(target, "arm-linux-gnueabihf") == 0))  {
         return 1;
-    } else {
-        printf("Invalid Flag | Target (-t): %s\n  Acceptable values: windows or linux\n", target);
-        return 0;
     }
+    printf("Invalid Flag | Target (-t): %s\n  Acceptable values: windows or linux\n", target);
+    return 0;
 }
 
 int is_ip(const char* agent, const char* ip) {
@@ -160,6 +157,10 @@ int is_ip(const char* agent, const char* ip) {
     // Agent is trigger, no return IP needed
     if (strcmp(agent, "trigger") == 0) {
         return 1;
+    
+    } else if (ip == NULL) {
+        printf("Invalid Flag | IP Address (-ip): %s\n  Acceptable value format: 127.0.0.1\n", ip);
+        return 0;
     
     // Agent is beacon or rat, check if IP
     } else {
@@ -250,6 +251,7 @@ void compile(struct Forge* obj) {
     // system(command);
     // free(command);
 }
+
 //////////////////////////////////////////////////////////////////////////////////////////
 // Testing
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -272,8 +274,6 @@ void forge_agent(char* input) {
         
         parse_arguments(&obj, input);
         print_forge(&obj);
-
-        // printf("out of parsing");
 
         if (validate_arguments(&obj))
             compile(&obj);
