@@ -30,6 +30,10 @@ forge -a rat -f library -t linux -ip 192.168.86.100 -p 8080 <br/>
 ## Usage: CLI
 Throughout the App
 
+- use: Select the agent to use
+- ?, h, help: Print command help to stdout
+- ls: List all agents
+- rm: Remove the agent from the agent list
 
 
 ## MITRE ATT&CK Coverage

@@ -12,7 +12,7 @@
 const char* prompt_function(int state) {
     switch (state) {
         case 0:
-            return BLUE " >" RESET " ";
+            return BLUE " [FASTEDCARDIO] >" RESET " ";
         case 1:
             return RED " >" RESET " ";
         default:
