@@ -248,8 +248,10 @@ const char* arm_linux_gnueabihf = "arm-linux-gnueabihf";           // ARM Linux 
 
 void compile(struct Forge* obj) {
     printf(SUCCESS "Valid arguments\n" RESET);
-    // char * command = malloc(1000);
-    // sprintf(command, "gcc -march= %s, -o %s %s.c -lssl -lcrypto\n", target, agent, agent);
+
+    // char * command = "gcc -march= %s, -o %s %s.c -lssl -lcrypto\n", target, agent, agent;
+    // print(GREEN "%s\n" RESET, command);
+
     // system(command);
     // free(command);
 }
